@@ -5,6 +5,14 @@ images:
 - 'gcr.io/$PROJECT_ID/remote-builders2'
 tags: ['cloud-builders-community']
 steps:
-- name: gcr.io/$PROJECT_ID/remote-builder
+- name: gcr.io/$PROJECT_ID/remote-builders2
+  waitFor: ["-"]
   env:
-    - COMMAND=ls -la
+    # Use Container Optimized OS
+    - INSTANCE_ARGS=--image-project cos-cloud --image-family cos-stable --zone=us-east1-b --subnet=rede-gce
+    - ZONE=us-east1-b
+    - USERNAME=cloud-user
+    # Run a script from the local build context in a Docker container
+    - COMMAND=docker run -v /home/cloud-user/workspace:/workspace ubuntu:16.04 bash -xe /workspace/test-scripts/no-op.sh
+- name: gcr.io/$PROJECT_ID/remote-builders2
+
