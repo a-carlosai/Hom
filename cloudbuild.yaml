@@ -4,3 +4,7 @@ steps:
 images:
 - 'gcr.io/$PROJECT_ID/remote-builders2'
 tags: ['cloud-builders-community']
+steps:
+- name: gcr.io/$PROJECT_ID/remote-builder
+  env:
+    - COMMAND=ls -la
