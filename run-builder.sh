@@ -12,7 +12,9 @@ USERNAME=${USERNAME:-admin}
 REMOTE_WORKSPACE=${REMOTE_WORKSPACE:-/home/${USERNAME}/workspace/}
 INSTANCE_NAME=${INSTANCE_NAME:-builder-$(cat /proc/sys/kernel/random/uuid)}
 ZONE=${ZONE:-us-east1-b}
-INSTANCE_ARGS=${INSTANCE_ARGS:---preemptible}
+#INSTANCE_ARGS=${INSTANCE_ARGS:---preemptible}
+INSTANCE_ARGS=${INSTANCE_ARGS:-PREMIUM}
+SUBNET=${SUBNET:-rede-gce}
 GCLOUD=${GCLOUD:-gcloud}
 
 ${GCLOUD} config set compute/zone ${ZONE}
@@ -27,7 +29,7 @@ ${USERNAME}:$(cat ${KEYNAME}.pub)
 EOF
 
 ${GCLOUD} compute instances create \
-       ${INSTANCE_ARGS} ${INSTANCE_NAME} \
+       --subnet=${SUBNET} --network-tier=${INSTANCE_ARGS} ${INSTANCE_NAME} \
        --metadata block-project-ssh-keys=TRUE \
        --metadata-from-file ssh-keys=ssh-keys
 
