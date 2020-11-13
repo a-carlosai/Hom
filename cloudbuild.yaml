@@ -1,5 +1,6 @@
 steps:
 - name: gcr.io/$PROJECT_ID/remote
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/remote', '.' ]
   waitFor: ["-"]
   env:
     # Use Container Optimized OS
