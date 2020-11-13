@@ -40,6 +40,3 @@ trap cleanup EXIT
 ${GCLOUD} compute ssh --ssh-key-file=${KEYNAME} \
        ${USERNAME}@${INSTANCE_NAME} -- ${COMMAND}
 
-${GCLOUD} compute scp --compress --recurse \
-       ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE}* $(pwd) \
-       --ssh-key-file=${KEYNAME}
