@@ -1,5 +1,5 @@
 steps:
-- name: gcr.io/$PROJECT_ID/remote-builders
+- name: gcr.io/$PROJECT_ID/remote-builder
   waitFor: ["-"]
   env:
     # Use Container Optimized OS
