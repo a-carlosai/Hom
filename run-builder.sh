@@ -37,6 +37,3 @@ ${GCLOUD} compute instances create \
 trap cleanup EXIT
 
 
-${GCLOUD} compute ssh --ssh-key-file=${KEYNAME} \
-       ${USERNAME}@${INSTANCE_NAME} -- ${COMMAND}
-       
