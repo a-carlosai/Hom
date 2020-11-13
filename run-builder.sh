@@ -28,7 +28,7 @@ ${USERNAME}:$(cat ${KEYNAME}.pub)
 EOF
 
 ${GCLOUD} compute instances create \
-       --subnet=${SUBNET} --network-tier=${INSTANCE_ARGS} ${INSTANCE_NAME} \
+       --zone=${ZONE} --subnet=${SUBNET} --network-tier=${INSTANCE_ARGS} ${INSTANCE_NAME} \
        --metadata block-project-ssh-keys=TRUE \
        --metadata-from-file ssh-keys=ssh-keys
 
