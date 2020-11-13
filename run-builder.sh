@@ -15,7 +15,7 @@ ZONE=${ZONE:-us-east1-b}
 INSTANCE_ARGS=${INSTANCE_ARGS:-PREMIUM}
 SUBNET=${SUBNET:-rede-gce}
 GCLOUD=${GCLOUD:-gcloud}
-BOOT=${REBOOT: sudo reboot}
+BOOT=${REBOOT:-sudo reboot}
 
 ${GCLOUD} config set compute/zone ${ZONE}
 
