@@ -10,11 +10,12 @@ function cleanup {
 
 USERNAME=${USERNAME:-ailteds01}
 REMOTE_WORKSPACE=${REMOTE_WORKSPACE:-/home/${USERNAME}/workspace/}
-INSTANCE_NAME=${INSTANCE_NAME:-instance-$(cat /proc/sys/kernel/random/uuid)}
+INSTANCE_NAME=${INSTANCE_NAME:-instance-$(cat /dev/urandom | tr '1-9' | fold -w 8 | head -n 1)}
 ZONE=${ZONE:-us-east1-b}
 INSTANCE_ARGS=${INSTANCE_ARGS:-PREMIUM}
 SUBNET=${SUBNET:-rede-gce}
 GCLOUD=${GCLOUD:-gcloud}
+BOOT=${REBOOT: sudo reboot}
 
 ${GCLOUD} config set compute/zone ${ZONE}
 
@@ -33,6 +34,11 @@ ${GCLOUD} compute instances create \
        --metadata-from-file ssh-keys=ssh-keys
 
 trap cleanup EXIT
+
+${GCLOUD} compute ssh ${USERNAME}@${INSTANCE_NAME} \
+--command=${REBOOT} \
+
+sleep 15
 
 ${GCLOUD} compute scp --compress --recurse \
        $(pwd) ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE} \
