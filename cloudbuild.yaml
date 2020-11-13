@@ -6,8 +6,6 @@ steps:
     # https://cloud.google.com/container-optimized-os/docs/
     - INSTANCE_ARGS=--image-project centos-cloud --image-family centos-6 --zone=us-east1-b --subnet=rede-gce
     - ZONE=us-east1-b
-    - USERNAME=cloud-user
+    - USERNAME=ailteds01
     # Run a script from the local build context in a Docker container
     - COMMAND=docker run -v /home/ailteds01/workspace:/workspace centos:6 bash -xe /workspace/test-scripts/no-op.sh
-
-
