@@ -41,9 +41,9 @@ ${GCLOUD} compute ssh ${USERNAME}@${INSTANCE_NAME} \
 
 sleep 15
 
-${GCLOUD} compute scp --compress --recurse \
-       $(pwd) ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE} \
-       --ssh-key-file=${KEYNAME}
+#${GCLOUD} compute scp --compress --recurse \
+#       $(pwd) ${USERNAME}@${INSTANCE_NAME}:${REMOTE_WORKSPACE} \
+#       --ssh-key-file=${KEYNAME}
 
 ${GCLOUD} compute ssh --ssh-key-file=${KEYNAME} \
        ${USERNAME}@${INSTANCE_NAME} -- ${COMMAND}
