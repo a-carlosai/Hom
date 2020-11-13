@@ -31,7 +31,8 @@ EOF
 ${GCLOUD} compute instances create \
        --zone=${ZONE} --subnet=${SUBNET} --network-tier=${INSTANCE_ARGS} ${INSTANCE_NAME} \
        --metadata block-project-ssh-keys=TRUE \
-       --metadata-from-file ssh-keys=ssh-keys
+       --metadata-from-file ssh-keys=ssh-keys \
+       ${INSTANCE_NAME}
 
 trap cleanup EXIT
 
